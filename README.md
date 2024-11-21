@@ -4,6 +4,10 @@
 
 This is a Python library for logical reasoning and propositional logic, providing a comprehensive set of classes to represent, manipulate, and evaluate logical sentences.
 
+## Inspiration
+
+This library was developed as part of the exploration of concepts introduced in Harvard's CS50 AI course (AI50), focusing on knowledge representation and reasoning techniques in artificial intelligence.
+
 ## Features
 
 - Supports multiple logical operators:
