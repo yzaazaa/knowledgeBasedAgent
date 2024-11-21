@@ -59,27 +59,41 @@ The `model_check()` function determines logical entailment:
 ## Usage Example
 
 ```python
-# Create logical sentences
-p = Symbol('P')
-q = Symbol('Q')
+from logic import *
 
-# Construct complex sentences
-sentence = Implication(And(p, q), p)
+# Creating logical sentences
+rain = Symbol("It is raining today")
+hagrid = Symbol("Harry visited hagrid today")
+dumbledore = Symbol("Harry visited dumbledore today")
 
-# Create a model (interpretation)
-model = {
-    'P': True,
-    'Q': False
-}
+# Creating knowledge base
+knowledge = And(
+	Implication(Not(rain), hagrid),
+	Or(hagrid, dumbledore),
+	Not(And(hagrid, dumbledore)),
+	dumbledore
+)
 
-# Evaluate the sentence
-result = sentence.evaluate(model)
-
-# Check logical entailment
-knowledge_base = And(p, q)
-query = p
-is_entailed = model_check(knowledge_base, query)
+# Checking if the query is true or false depending on the knowledge based
+result = model_check(knowledge, rain)
+print(result)
 ```
+
+Consider the following logical statements:
+1. If it didn't rain, Harry visited Hagrid today.
+2. Harry visited Hagrid or Dumbledore today, but not both.
+3. Harry visited Dumbledore today.
+
+Using logical reasoning, we can solve the question "Did it rain today?":
+
+- We know Harry visited Dumbledore today.
+- The second statement implies Harry cannot have visited both Hagrid and Dumbledore.
+- Since Harry visited Dumbledore, he did not visit Hagrid.
+- The first statement says that if it didn't rain, Harry would have visited Hagrid.
+- But we know Harry did not visit Hagrid.
+- Therefore, it must have rained today.
+
+This example demonstrates how logical reasoning can be used to draw conclusions from a set of given statements.
 
 ## Key Methods
 

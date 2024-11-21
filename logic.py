@@ -1,4 +1,6 @@
-class Sentence():
+from abc import ABC
+
+class Sentence(ABC):
 	def evaluate(self, model):
 		"""Evaluates the logical sentence."""
 		raise Exception("nothing to evaluate")
